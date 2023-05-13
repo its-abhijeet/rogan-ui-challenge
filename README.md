@@ -1,42 +1,40 @@
-# Tasks to be implemented : 
+# Tasks to be implemented :
 
 Figma design : https://www.figma.com/file/pnmc2pyAcNWBkhGVf0croR/Rogan-UI-challenge?type=design&node-id=0-1&t=MW83LTVIV9T968c6-0
 
-### Date fns tasks :  
+### Date fns tasks :
 
-Updated this min/hour/days ago 
+Updated this min/hour/days ago.
 
-Parsing string from date obj 
+Parsing string from date obj
 
-Parsing date obj from string 
+### Antd task:
 
-### Antd task: 
+Replace normal list with card
 
-Replace normal list with card 
+Add slide pane bar to create new task form
 
-Add slide pane bar to create new task form 
+Add avatar in side pane
 
-Add avatar in side pane 
+### Zustand task:
 
-### Zustand task: 
+Use a login data and make it available every screen using zustand
 
-Use a login data and make it available every screen using zustand 
+### API task:
 
-### API task: 
+Use react query to post, delete and get the data
 
-Use react query to post, delete and get the data 
+Button loading and disabled while posting data
 
-Button loading and disabled while posting data 
+### Route task:
 
-### Route task: 
+Add a 404 not found page
 
-Add a 404 not found page 
+Add default route logic
 
-Add default route logic 
+### Yup validation, formik
 
-### Yup validation, formik  
-
-Validate the name(must be 8 character), description(must be 50 character) 
+Validate the name(must be 8 character), description(must be 50 character)
 
 # Getting Started with Create React App
 
