@@ -3,14 +3,15 @@ import {
   LeftOutlined,
   RightOutlined,
   SettingOutlined,
-  UserOutlined,
   PlusCircleOutlined,
 } from "@ant-design/icons";
+import { Avatar } from "@mui/material";
 import { useState } from "react";
 import { Modal, Input } from "antd";
 import AddArticleModal from "./AddArticleModal";
 import { useArticleStore } from "../../store/index";
 const SideBar = () => {
+  const [userName, setUserName] = useState("User");
   const data = useArticleStore((state) => state.data);
   const addData = useArticleStore((state) => state.addData);
   const updateData = useArticleStore((state) => state.updateData);
@@ -47,10 +48,19 @@ const SideBar = () => {
       src: <SettingOutlined />,
       onClick: () => setIsModalVisible1(true),
     },
-    { title: "Profile", src: <UserOutlined />, gap: true },
+    {
+      title: `${userName}`,
+      src: (
+        <Avatar sx={{ width: 32, height: 32 }}>
+          {userName.substr(0, 1).toLocaleUpperCase()}
+        </Avatar>
+      ),
+      // `${userName && "User"}` ? <UserOutlined /> :
+      gap: true,
+    },
     {
       title: "Add Card",
-      src: <PlusCircleOutlined />,
+      src: <PlusCircleOutlined className="text-lg" />,
       onClick: () => setModalOpen(true),
     },
   ];
@@ -106,12 +116,18 @@ const SideBar = () => {
         okButtonProps={{ className: "bg-blue-500" }}
         onOk={() => {
           setIsModalVisible1(false);
+          console.log(userName);
         }}
         onCancel={() => {
           setIsModalVisible1(false);
         }}
       >
-        <Input placeholder="Enter User name" />
+        <Input
+          value={userName}
+          placeholder="Enter User name"
+          onChange={(e) => setUserName(e.target.value)}
+          onPressEnter={() => setIsModalVisible1(false)}
+        />
       </Modal>
       <Modal
         visible={modalOpen}
@@ -121,6 +137,7 @@ const SideBar = () => {
         onCancel={() => {
           setModalOpen(false);
         }}
+        destroyOnClose
       >
         <AddArticleModal
           onCloseModal={handleModalClose}

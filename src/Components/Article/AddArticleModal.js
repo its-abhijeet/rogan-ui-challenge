@@ -4,6 +4,7 @@ const AddArticleModal = ({ onCloseModal, initialData }) => {
   const [name, setName] = useState();
   const [description, setDescription] = useState();
   const [tags, setTags] = useState();
+
   useEffect(() => {
     setDescription(initialData?.description);
     setName(initialData?.name);

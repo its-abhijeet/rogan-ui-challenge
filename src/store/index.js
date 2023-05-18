@@ -49,10 +49,11 @@ const useStore = create((set) => ({
     set((state) => ({
       data: [
         {
+          createdAt: new Date(),
           name: article.name,
           description: article.description,
           tags: article.tags,
-          id: Math.random() * 100,
+          id: Math.floor(Math.random() * 100),
         },
         ...state.data,
       ],
