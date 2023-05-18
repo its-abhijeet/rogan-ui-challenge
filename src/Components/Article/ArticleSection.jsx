@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-// import { data } from "../dummyArticles";
+import { useArticleStore } from "../../store/index";
 import PageLoader from "../common/PageLoader";
+import ArticleCard from "./ArticleCard";
 const ArticleSection = () => {
-  const [articlesData, setArticlesData] = useState([]);
+  const data = useArticleStore((state) => state.data);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = () => {
       setLoading(true);
-      const data = require("../dummyArticles");
-      console.log(data);
-      setArticlesData(data);
       setLoading(false);
     };
     fetchData();
@@ -17,11 +15,14 @@ const ArticleSection = () => {
   if (loading) return <PageLoader />;
   return (
     <div className="mt-5 ">
-      {articlesData.data.map((article, index) => (
-        <div key={index} className="mb-3">
-          <p className="text-xl font-semibold">{article.name}</p>
-          <p>{article.description}</p>
-        </div>
+      {/* grid grid-cols-4 gap-4 */}
+      {data.map((article, index) => (
+        <ArticleCard
+          className=""
+          name={article.name}
+          description={article.description}
+          tags={article.tags}
+        />
       ))}
     </div>
   );

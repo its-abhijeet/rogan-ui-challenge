@@ -22,6 +22,7 @@ Use a login data and make it available every screen using zustand
 
 ### API task:
 
+https://645eea377da4477ba94dd89b.mockapi.io/api/v1/articles
 Use react query to post, delete and get the data
 
 Button loading and disabled while posting data
