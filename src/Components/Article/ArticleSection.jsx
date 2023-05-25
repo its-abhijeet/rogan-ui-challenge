@@ -4,6 +4,7 @@ import PageLoader from "../common/PageLoader";
 import ArticleCard from "./ArticleCard";
 const ArticleSection = () => {
   const data = useArticleStore((state) => state.data);
+  console.log(data);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = () => {

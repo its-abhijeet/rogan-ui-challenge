@@ -1,50 +1,49 @@
 import { create } from "zustand";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+// // Using react Query============================================
+// const ExtractingData = () => {
+//   const [getResult, setGetResult] = useState(null);
+//   //for react query use
+//   const { isLoading: isLoadingData, refetch: getData } = useQuery(
+//     "incoming-data",
+//     async () => {
+//       return await axios.get(
+//         "https://645eea377da4477ba94dd89b.mockapi.io/api/v1/articles"
+//       );
+//     },
+//     {
+//       enabled: false,
+//       retry: 2,
+//       onSuccess: (res) => {
+//         const result = {
+//           status: res.status + "-" + res.statusText,
+//           headers: res.headers,
+//           data: res.data,
+//         };
+//         setGetResult(result);
+//       },
+//       onError: (err) => {
+//         setGetResult(err.response?.data || err);
+//       },
+//     }
+//   );
+//   useEffect(() => {
+//     if (isLoadingData) setGetResult("Loading...");
+//   }, [isLoadingData]);
+//   //   ========================================
+
+//
 
 const useStore = create((set) => ({
-  data: [
-    {
-      createdAt: "2023-05-12T13:34:38.006Z",
-      name: "Dummy 4",
-      description: "Dummy 4 Description ",
-      tags: "test",
-      id: "4",
-    },
-    {
-      createdAt: "2023-05-12T13:34:38.006Z",
-      name: "Dummy 5",
-      description: "Dummy 5 Description ",
-      tags: "test",
-      id: "5",
-    },
-    {
-      createdAt: "2023-05-12T13:34:38.006Z",
-      name: "Dummy 6",
-      description: "Dummy 6 Description ",
-      tags: "test",
-      id: "6",
-    },
-    {
-      createdAt: "2023-05-12T13:34:38.006Z",
-      name: "Dummy 7",
-      description: "Dummy 7 Description ",
-      tags: "test",
-      id: "7",
-    },
-    {
-      createdAt: "2023-05-12T13:34:38.006Z",
-      name: "Dummy 8",
-      description: "Dummy 8 Description ",
-      tags: "test",
-      id: "8",
-    },
-    {
-      createdAt: "2023-05-12T13:34:38.006Z",
-      name: "Dummy 9",
-      description: "Dummy 9 Description ",
-      tags: "test",
-      id: "9",
-    },
-  ],
+  data: useQuery(["incoming-data"], async () => {
+    const result = await axios.get(
+      "https://645eea377da4477ba94dd89b.mockapi.io/api/v1/articles"
+    );
+    console.log(result);
+    return result.data;
+  }),
   addData: (article) =>
     set((state) => ({
       data: [
@@ -53,7 +52,6 @@ const useStore = create((set) => ({
           name: article.name,
           description: article.description,
           tags: article.tags,
-          id: Math.floor(Math.random() * 100),
         },
         ...state.data,
       ],
@@ -78,4 +76,5 @@ const useStore = create((set) => ({
       }),
     })),
 }));
+// };
 export const useArticleStore = useStore;

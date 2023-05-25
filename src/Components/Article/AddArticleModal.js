@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 const AddArticleModal = ({ onCloseModal, initialData }) => {
   const [name, setName] = useState();
   const [description, setDescription] = useState();

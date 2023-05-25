@@ -3,44 +3,14 @@ import {
   LeftOutlined,
   RightOutlined,
   SettingOutlined,
-  PlusCircleOutlined,
 } from "@ant-design/icons";
 import { Avatar } from "@mui/material";
 import { useState } from "react";
 import { Modal, Input } from "antd";
-import AddArticleModal from "./AddArticleModal";
-import { useArticleStore } from "../../store/index";
 const SideBar = () => {
   const [userName, setUserName] = useState("User");
-  const data = useArticleStore((state) => state.data);
-  const addData = useArticleStore((state) => state.addData);
-  const updateData = useArticleStore((state) => state.updateData);
   const [open, setOpen] = useState(true);
   const [isModalVisible1, setIsModalVisible1] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalData, setModalData] = useState(null);
-  console.log(data);
-  const handleModalClose = (response) => {
-    setModalOpen(false);
-    if (response) {
-      console.log(response);
-      if (response.id) {
-        updateData({
-          name: response.name,
-          description: response.description,
-          tags: response.tags,
-        });
-      } else {
-        addData({
-          name: response.name,
-          description: response.description,
-          tags: response.tags,
-          id: response.id,
-        });
-      }
-    }
-    modalData && setModalData(null);
-  };
   const Menus = [
     { title: "Articles", src: <FileOutlined /> },
     {
@@ -57,11 +27,6 @@ const SideBar = () => {
       ),
       // `${userName && "User"}` ? <UserOutlined /> :
       gap: true,
-    },
-    {
-      title: "Add Card",
-      src: <PlusCircleOutlined className="text-lg" />,
-      onClick: () => setModalOpen(true),
     },
   ];
 
@@ -127,21 +92,6 @@ const SideBar = () => {
           placeholder="Enter User name"
           onChange={(e) => setUserName(e.target.value)}
           onPressEnter={() => setIsModalVisible1(false)}
-        />
-      </Modal>
-      <Modal
-        visible={modalOpen}
-        onOk={() => {
-          setModalOpen(false);
-        }}
-        onCancel={() => {
-          setModalOpen(false);
-        }}
-        destroyOnClose
-      >
-        <AddArticleModal
-          onCloseModal={handleModalClose}
-          initialData={modalData}
         />
       </Modal>
     </div>
