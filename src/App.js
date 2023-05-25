@@ -1,12 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter,Switch,Route  } from 'react-router-dom';
-import { ToastContainer} from "react-toastify";
-import { ARITCLE_ROUTES } from './Components/routeConstant';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ARITCLE_ROUTES } from "./Components/routeConstant";
 
 function App() {
+  const queryClient = new QueryClient();
   return (
-    <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
         <ToastContainer />
         <Switch>
           {ARITCLE_ROUTES.map((route) => (
@@ -15,9 +16,11 @@ function App() {
               path={route.path}
               exact
               component={route.component}
-            />))}
+            />
+          ))}
         </Switch>
-    </BrowserRouter>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
