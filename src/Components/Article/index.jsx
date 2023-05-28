@@ -1,13 +1,16 @@
 import React from "react";
-import PageLoader from "../common/PageLoader";
 import SideBar from "./SideBar";
-import { Button } from "antd";
-import { PlusCircleOutlined } from "@ant-design/icons";
 import ArticleSection from "./ArticleSection";
-import NotFound from "../common/NotFound";
+import AddArticleButton from "./AddArticleButton";
 
 const index = () => {
-  return <NotFound />;
+  return (
+    <div className="flex flex-row">
+      <SideBar />
+      <ArticleSection />
+      <AddArticleButton />
+    </div>
+  );
 };
 
 export default index;
