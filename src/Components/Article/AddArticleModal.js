@@ -10,22 +10,28 @@ const AddArticleModal = ({ onCloseModal, initialData }) => {
       "https://645eea377da4477ba94dd89b.mockapi.io/api/v1/articles",
       DATA
     );
-  })
+  });
   useEffect(() => {
     setDescription(description);
     setName(name);
     setTags(tags);
-  }, [name,description,tags]);
-  
+  }, [name, description, tags]);
+
   const handleSave = () => {
+    console.log(name);
+    console.log(description);
+    console.log(tags);
     onCloseModal(
       mutation.mutate({
-      createdAt: new Date(),
-      name: name,
-      description: description,
-      tags: tags,
-    }));
-    window.location.reload(false);
+        createdAt: new Date(),
+        name: name,
+        description: description,
+        tags: tags,
+      })
+    );
+    setTimeout(() => {
+      window.location.reload();
+    });
   };
   return (
     <div className="w-96 h-full p-2 border-black border-2 m-8">
