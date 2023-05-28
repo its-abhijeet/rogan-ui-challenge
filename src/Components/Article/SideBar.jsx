@@ -31,11 +31,11 @@ const SideBar = () => {
   ];
 
   return (
-    <div className="mr-2 ml-0 h-screen justify-center content-center">
+    <div className="mr-2 ml-0 h-auto justify-center content-center">
       <div
         className={` ${
           open ? "w-72" : "w-20 "
-        } bg-dark-purple h-screen p-5  pt-8 relative duration-300 `}
+        } bg-dark-purple h-full p-5 pt-8 relative duration-300 `}
       >
         <div className="flex flex-row space-x-1 content-center items-center ">
           <RightOutlined
@@ -56,7 +56,7 @@ const SideBar = () => {
             Rogan UI Challenge
           </h1>
         </div>
-        <ul className="pt-6">
+        <ul className="pt-6 mb-64">
           {Menus.map((Menu, index) => (
             <li
               key={index}

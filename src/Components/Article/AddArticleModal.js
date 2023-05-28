@@ -1,23 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 const AddArticleModal = ({ onCloseModal, initialData }) => {
   const [name, setName] = useState();
   const [description, setDescription] = useState();
   const [tags, setTags] = useState();
-
+  const mutation = useMutation((DATA) => {
+    return axios.post(
+      "https://645eea377da4477ba94dd89b.mockapi.io/api/v1/articles",
+      DATA
+    );
+  })
   useEffect(() => {
-    setDescription(initialData?.description);
-    setName(initialData?.name);
-    setTags(initialData?.tags);
-  }, []);
-  //   const handleCancel = () => {
-  //     onCloseModal(null);
-  //   };
+    setDescription(description);
+    setName(name);
+    setTags(tags);
+  }, [name,description,tags]);
+  
   const handleSave = () => {
-    onCloseModal({
-      name,
-      description,
-      tags,
-    });
+    onCloseModal(
+      mutation.mutate({
+      createdAt: new Date(),
+      name: name,
+      description: description,
+      tags: tags,
+    }));
+    window.location.reload(false);
   };
   return (
     <div className="w-96 h-full p-2 border-black border-2 m-8">
